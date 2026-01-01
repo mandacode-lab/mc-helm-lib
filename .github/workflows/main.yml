@@ -26,7 +26,7 @@ jobs:
   pull-request-check:
     name: Pull Request Check
     if: github.event_name == 'pull_request'
-    uses: mandacode-lib/mandacode-workflows/.github/workflows/helm_chart_test.yml@develop
+    uses: mandacode-lab/mandacode-workflows/.github/workflows/helm_chart_test.yml@develop
     with:
       charts: |
         [
@@ -38,7 +38,7 @@ jobs:
   release:
     name: Release
     if: github.event_name == 'push' && github.ref_type == 'tag'
-    uses: mandacode-lib/mandacode-workflows/.github/workflows/helm_chart_build_and_push.yml@develop
+    uses: mandacode-lab/mandacode-workflows/.github/workflows/helm_chart_build_and_push.yml@develop
     with:
       charts: |
         [

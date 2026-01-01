@@ -36,7 +36,7 @@ jobs:
 
   release:
     name: Release
-    if: github.event_name == 'push' && github.ref_type == 'tag'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     uses: mandacode-lab/mandacode-workflows/.github/workflows/helm_chart_build_and_push.yml@develop
     with:
       registry: registry.mandacode.com

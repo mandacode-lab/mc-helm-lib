@@ -30,7 +30,7 @@ jobs:
     with:
       charts: |
         [
-          {"dir": "."}
+          {"dir": "."},
           {"dir": "test-chart"}
         ]
 

@@ -1,0 +1,14 @@
+{{- $root := . -}}
+{{ include "mc-helm-lib.deployment" (dict
+  "component" "api"
+  "config" .Values.api
+  "configRefs" (list
+    (dict
+      "type" "configMap"
+      "name" (printf "%s-api-config" (include "test-chart.fullname" $root))
+      "template" "test-chart.config"
+      "params" $root
+    )
+  )
+  "root" $root
+) }}

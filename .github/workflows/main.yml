@@ -33,7 +33,6 @@ jobs:
           {"dir": "."}
           {"dir": "test-chart"}
         ]
-      chart-base-path: ""
 
   release:
     name: Release
@@ -44,7 +43,6 @@ jobs:
         [
           {"dir": "."}
         ]
-      chart-base-path: ""
     secrets:
       registry-username: ${{ secrets.REGISTRY_USERNAME }}
       registry-password: ${{ secrets.REGISTRY_PASSWORD }}

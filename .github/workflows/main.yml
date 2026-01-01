@@ -1,0 +1,50 @@
+name: Main CI/CD
+
+on:
+  pull_request:
+    branches:
+      - main
+      - develop
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  actions: read
+  contents: write
+  packages: write
+  pull-requests: read
+  security-events: write
+  id-token: write
+  attestations: write
+
+jobs:
+  pull-request-check:
+    name: Pull Request Check
+    if: github.event_name == 'pull_request'
+    uses: mandacode-lab/mandacode-workflows/.github/workflows/helm_chart_test.yml@develop
+    with:
+      charts: |
+        [
+          {"dir": "."},
+          {"dir": "test-chart"}
+        ]
+
+  release:
+    name: Release
+    if: github.event_name == 'push' && github.ref_type == 'tag'
+    uses: mandacode-lab/mandacode-workflows/.github/workflows/helm_chart_build_and_push.yml@develop
+    with:
+      registry: registry.mandacode.com
+      repository: lib-charts
+      charts: |
+        [
+          {"dir": "."}
+        ]
+    secrets:
+      registry-username: ${{ secrets.REGISTRY_USERNAME }}
+      registry-password: ${{ secrets.REGISTRY_PASSWORD }}

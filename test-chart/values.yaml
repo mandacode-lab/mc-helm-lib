@@ -1,0 +1,64 @@
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  name: ""
+
+imagePullSecrets: []
+
+api:
+  enabled: true
+  replicaCount: 2
+
+  image:
+    repository: nginx
+    tag: "1.21"
+    pullPolicy: IfNotPresent
+
+  service:
+    type: ClusterIP
+    port: 80
+    targetPort: 8080
+
+  autoscaling:
+    enabled: false
+    minReplicas: 2
+    maxReplicas: 10
+    targetCPUUtilizationPercentage: 80
+
+  httpRoute:
+    enabled: false
+
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 250m
+      memory: 256Mi
+
+  livenessProbe:
+    httpGet:
+      path: /health
+      port: http
+    initialDelaySeconds: 30
+    periodSeconds: 10
+
+  readinessProbe:
+    httpGet:
+      path: /ready
+      port: http
+    initialDelaySeconds: 10
+    periodSeconds: 5
+
+  podSecurityContext: {}
+  securityContext: {}
+  podAnnotations: {}
+  podLabels: {}
+  env: []
+  volumeMounts: []
+  volumes: []
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}

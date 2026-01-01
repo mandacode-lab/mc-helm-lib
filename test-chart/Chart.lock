@@ -1,0 +1,6 @@
+dependencies:
+- name: mc-helm-lib
+  repository: file://..
+  version: 0.1.0
+digest: sha256:f964d219dbaf1e8b7c2e32472164a6092d97a62f10e0d691aa7a8ab339b71769
+generated: "2026-01-01T21:17:59.596381279+09:00"

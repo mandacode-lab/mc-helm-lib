@@ -1,0 +1,6 @@
+# mc-helm-lib
+#
+# This is a library chart that provides reusable templates.
+# Library charts do not have default values as they are consumed by application charts.
+#
+# For usage examples and documentation, see README.md

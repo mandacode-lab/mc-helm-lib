@@ -1,0 +1,11 @@
+apiVersion: v2
+name: test-chart
+description: Test chart for mc-helm-lib
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+
+dependencies:
+  - name: mc-helm-lib
+    version: 0.1.0
+    repository: "file://.."

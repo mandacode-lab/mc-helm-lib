@@ -1,0 +1,6 @@
+{{- $root := . -}}
+{{ include "mc-helm-lib.service" (dict
+  "component" "api"
+  "config" .Values.api
+  "root" $root
+) }}

@@ -68,6 +68,8 @@ spec:
           {{- toYaml $config.securityContext | nindent 12 }}
         image: "{{ $config.image.repository }}:{{ $config.image.tag | default $root.Chart.AppVersion }}"
         imagePullPolicy: {{ $config.image.pullPolicy }}
+        imagePullSecrets:
+          {{- toYaml $config.image.pullSecrets | nindent 10 }}
         ports:
         - name: http
           containerPort: {{ $config.service.targetPort }}

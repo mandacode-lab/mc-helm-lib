@@ -105,6 +105,7 @@ api:
     repository: myregistry/myapp
     tag: "1.0.0"
     pullPolicy: IfNotPresent
+    pullSecrets: []
 
   service:
     type: ClusterIP

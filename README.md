@@ -7,7 +7,6 @@ Reusable Helm library chart providing standard Kubernetes resource templates.
 - `mc-helm-lib.deployment` - Deployment with config injection support
 - `mc-helm-lib.service` - Service
 - `mc-helm-lib.hpa` - HorizontalPodAutoscaler
-- `mc-helm-lib.httproute` - Gateway API HTTPRoute
 
 ## Installation
 
@@ -95,17 +94,6 @@ Config changes trigger automatic pod restarts via checksum annotations.
 ) }}
 ```
 
-### HTTPRoute
-
-```yaml
-{{ include "mc-helm-lib.httproute" (dict
-  "component" "api"
-  "config" .Values.api
-  "root" $
-) }}
-```
-
-
 ## Values Structure
 
 ```yaml
@@ -128,18 +116,6 @@ api:
     minReplicas: 2
     maxReplicas: 10
     targetCPUUtilizationPercentage: 80
-
-  httpRoute:
-    enabled: false
-    parentRefs:
-      - name: gateway
-    hostnames:
-      - api.example.com
-    rules:
-      - matches:
-          - path:
-              type: PathPrefix
-              value: /
 
   resources:
     limits:
